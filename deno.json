@@ -1,9 +1,5 @@
 {
-    "compilerOptions": {
-        "strict": true
-    },
-
-    "tasks": {
-        "start": "deno run --allow-read --allow-net --allow-env app.ts"
-    }
+  "compilerOptions": {
+    "strict": true
+  }
 }
