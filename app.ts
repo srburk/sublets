@@ -1,6 +1,6 @@
 // app.ts
 
-import { Application } from "https://deno.land/x/oak/mod.ts";
+import { Application, Router } from "https://deno.land/x/oak/mod.ts";
 import "https://deno.land/x/dotenv@v3.2.0/load.ts";
 import * as log from "https://deno.land/std@0.140.0/log/mod.ts";
 
@@ -9,6 +9,8 @@ const port = parseInt(Deno.env.get("PORT") || "8000");
 
 // routers
 import { userRouter } from "./routes/user.route.ts";
+const router = new Router()
+  .use("/api/users", userRouter.routes(), userRouter.allowedMethods());
 
 const app = new Application();
 
@@ -20,7 +22,7 @@ app.use(async (context, next) => {
 });
 
 // routes
-app.use(userRouter.routes());
+app.use(router.routes());
 
 app.listen({ port: port });
 
